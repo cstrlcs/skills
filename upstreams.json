@@ -1,0 +1,142 @@
+[
+  {
+    "repo": "mattpocock/skills",
+    "commit": "49dd158d1076134a641b33efb035946536778336",
+    "informs": [
+      "interview",
+      "improve",
+      "prototype",
+      "spec",
+      "retro",
+      "write",
+      "develop/references"
+    ],
+    "watch": [
+      "CHANGELOG.md",
+      ".changeset/**",
+      ".agents/invocation.md",
+      "skills/productivity/grilling/**",
+      "skills/productivity/writing-for-agents/**",
+      "skills/engineering/{domain-modeling,codebase-design,improve-codebase-architecture,tdd,diagnosing-bugs,prototype,to-spec,retro}/**"
+    ]
+  },
+  {
+    "repo": "anthropics/skills",
+    "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+    "informs": ["write", "evals"],
+    "watch": [
+      "skills/skill-creator/**",
+      "skills/claude-api/shared/{prompt-audit,model-migration}.md",
+      "skills/claude-api/shared/evals/**",
+      "skills/frontend-design/SKILL.md",
+      ".claude-plugin/marketplace.json"
+    ]
+  },
+  {
+    "repo": "emilkowalski/skills",
+    "commit": "2d228630ba1446365f614a108cb8252f1feda202",
+    "informs": ["develop/references/motion.md"],
+    "watch": [
+      "README.md",
+      "skills/{animate,animation-performance,break-ui,mobile-native,apple-design,review-animations}/**"
+    ]
+  },
+  {
+    "repo": "vercel-labs/skills",
+    "commit": "13e4063a1cf913f5606d57d42ab83a86f5001e04",
+    "informs": ["setup"],
+    "watch": ["src/{agents,installer,skill-lock}.ts", "README.md"]
+  },
+  {
+    "repo": "slavingia/skills",
+    "commit": "eb9f57fba03ddb0382ed3bfe6654d3d7df128c70",
+    "informs": ["review"],
+    "watch": ["skills/minimalist-review/**"]
+  },
+  {
+    "repo": "obra/superpowers",
+    "commit": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+    "informs": ["develop", "review", "write"],
+    "watch": [
+      "RELEASE-NOTES.md",
+      "docs/superpowers/specs/**",
+      "skills/{writing-plans,subagent-driven-development,executing-plans,writing-skills,requesting-code-review,diagnosing-superpowers}/**"
+    ]
+  },
+  {
+    "repo": "multica-ai/andrej-karpathy-skills",
+    "commit": "2c606141936f1eeef17fa3043a72095b4765b9c2",
+    "informs": ["develop"],
+    "watch": ["CLAUDE.md", "EXAMPLES.md"]
+  },
+  {
+    "repo": "trailofbits/skills",
+    "commit": "442fc9d6c89b1e937e6f7a477e7071ea75fcbea4",
+    "informs": ["review", "develop"],
+    "watch": [
+      "AGENTS.md",
+      "plugins/{insecure-defaults,sharp-edges,variant-analysis,property-based-testing,supply-chain-risk-auditor,second-opinion}/**",
+      "plugins/c-review/AGENTS.md"
+    ]
+  },
+  {
+    "repo": "affaan-m/ECC",
+    "commit": "b92f181b3b748d1abbc2afd94af6aa7d8c8fca29",
+    "informs": ["hooks", "defaults", "review", "retro"],
+    "watch": [
+      "hooks/{hooks,codex-hooks}.json",
+      "scripts/hooks/{stop-format-typecheck,post-edit-accumulator,config-protection,session-start}.js",
+      "scripts/lib/{resolve-formatter,hook-flags}.js",
+      "skills/{skill-comply,orch-pipeline,gateguard}/**",
+      "agents/{code-reviewer,commit-reviewer}.md",
+      "commands/{learn-eval,save-session,plan,prp-implement}.md",
+      "rules/common/agents.md",
+      "rules/web/hooks.md",
+      "docs/capability-surface-selection.md",
+      "docs/gateguard/**",
+      "the-security-guide.md"
+    ]
+  },
+  {
+    "repo": "LerianStudio/ring",
+    "commit": "5dcf4ef66574c900c17ee3b8364bdd103f216f88",
+    "informs": ["research", "develop", "review"],
+    "watch": [
+      "default/skills/{writing-plans,dispatching-workflows,test-driven-development,testing-skills-with-subagents}/**",
+      "default/skills/reviewing-code/reviewers/dispatch-prompts.md",
+      "default/skills/shared-patterns/ai-slop-detection.md",
+      "dev-team/agents/{logic,nil,dead-code,test,security}-reviewer.md",
+      "dev-team/skills/{auditing-dependency-security,reviewing-operational-risk}/**"
+    ]
+  },
+  {
+    "repo": "pbakaus/impeccable",
+    "commit": "245ad82def45831dc56a21b683c7a1ff530b06cc",
+    "informs": ["develop/references", "improve/references/ui.md"],
+    "watch": ["skill/SKILL.src.md", "skill/reference/**", "crates/foundation/src/registry.rs"]
+  },
+  {
+    "repo": "anthropics/claude-code",
+    "commit": "3deb873687379f0c199a69fdaccc65f0865f7a29",
+    "informs": ["hooks", "defaults", "review"],
+    "watch": [
+      "CHANGELOG.md",
+      ".claude-plugin/marketplace.json",
+      "plugins/security-guidance/hooks/**",
+      "plugins/code-review/commands/code-review.md",
+      "plugins/commit-commands/commands/**",
+      "mods/README.md",
+      "mods/agents-md/README.md"
+    ]
+  },
+  {
+    "repo": "humanlayer/humanlayer",
+    "commit": "99abe673498cf8bdcd5f989aebe9406a27185b3b",
+    "informs": ["research"],
+    "watch": [
+      ".claude/commands/{create_plan,implement_plan,research_codebase}.md",
+      ".claude/agents/{codebase-locator,codebase-analyzer,codebase-pattern-finder,thoughts-analyzer}.md",
+      "docs/workshop.mdx"
+    ]
+  }
+]

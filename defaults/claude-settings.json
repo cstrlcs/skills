@@ -1,0 +1,48 @@
+{
+  "attribution": false,
+  "statusLine": {
+    "type": "command",
+    "command": "jq -r '[.model.display_name, (.workspace.current_dir | split(\"/\") | last), \"\\(.context_window.used_percentage // 0 | floor)% context\", (.rate_limits.five_hour // empty | \"5h \\(.used_percentage | floor)% until \\(.resets_at | localtime | strftime(\"%H:%M\"))\"), (.rate_limits.seven_day // empty | \"7d \\(.used_percentage | floor)%\")] | join(\" · \")'"
+  },
+  "permissions": {
+    "ask": [
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git * --no-verify*)",
+      "Edit(.oxlintrc.*)",
+      "Edit(oxlint.config.*)",
+      "Edit(.oxfmtrc.*)",
+      "Edit(oxfmt.config.*)",
+      "Edit(tsconfig*.json)",
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(!.env.example)"
+    ],
+    "deny": ["Read(~/.ssh/**)", "Read(~/.aws/**)"]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun \"{{checkout}}/hooks/hook.ts\" record",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bun \"{{checkout}}/hooks/hook.ts\" stop",
+            "timeout": 300
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
+target_home="$(cd -- "${SKILLS_HOME:-$HOME}" && pwd -P)"
+claude_home="${CLAUDE_CONFIG_DIR:-$target_home/.claude}"
+defaults_dir="$script_dir/defaults"
+
+if [[ ! -d "$script_dir/skills" || ! -f "$defaults_dir/INSTRUCTIONS.md" || ! -f "$defaults_dir/claude-settings.json" ]]; then
+  echo "Run setup from a complete checkout of this repository." >&2
+  exit 1
+fi
+
+case "$script_dir/" in
+  "$claude_home/"*)
+    echo "Move this checkout outside $claude_home before running setup." >&2
+    exit 1
+    ;;
+esac
+
+for tool in jq bun; do
+  if ! command -v "$tool" >/dev/null; then
+    echo "Install $tool before running setup: jq merges the defaults into the Claude Code settings, and bun runs the hooks." >&2
+    exit 1
+  fi
+done
+
+backup_path() {
+  local candidate="$1.bkp"
+  local number=1
+  while [[ -e "$candidate" || -L "$candidate" ]]; do
+    candidate="$1.bkp.$number"
+    number=$((number + 1))
+  done
+  echo "$candidate"
+}
+
+link() {
+  local path="$1"
+  local target="$2"
+
+  if [[ "$path" -ef "$target" ]]; then
+    echo "Already linked: $path"
+    return
+  fi
+
+  if [[ -e "$path" || -L "$path" ]]; then
+    local backup
+    backup="$(backup_path "$path")"
+    mv -- "$path" "$backup"
+    echo "Backed up: $path -> $backup"
+  fi
+
+  mkdir -p -- "$(dirname -- "$path")"
+  ln -s -- "$target" "$path"
+  echo "Linked: $path -> $target"
+}
+
+merge_json() {
+  local destination="$1"
+  local defaults="$2"
+  local current='{}'
+  local merged
+
+  if [[ -e "$destination" ]]; then
+    current="$(jq . "$destination")"
+  fi
+
+  merged="$(jq -s --arg checkout "$script_dir" '
+    def dedupe: reduce .[] as $entry ([]; if any(.[]; . == $entry) then . else . + [$entry] end);
+    .[0] as $user
+    | (.[1] | walk(if type == "string" then gsub("\\{\\{checkout\\}\\}"; $checkout) else . end)) as $repo
+    | ($user * $repo)
+    | reduce ("permissions", "hooks") as $section (.;
+        if has($section) then
+          .[$section] |= with_entries(
+            if (.value | type) == "array"
+            then .value = ((($user[$section] // {})[.key] // []) + .value | dedupe)
+            else . end)
+        else . end)
+  ' <(printf '%s' "$current") "$defaults")"
+
+  if [[ "$merged" == "$current" ]]; then
+    echo "Already current: $destination"
+    return
+  fi
+
+  if [[ -e "$destination" ]]; then
+    local backup
+    backup="$(backup_path "$destination")"
+    cp -- "$destination" "$backup"
+    echo "Backed up: $destination -> $backup"
+  fi
+
+  mkdir -p -- "$(dirname -- "$destination")"
+  printf '%s\n' "$merged" > "$destination"
+  echo "Merged: $defaults -> $destination"
+}
+
+link "$claude_home/skills" "$script_dir/skills"
+link "$claude_home/CLAUDE.md" "$defaults_dir/INSTRUCTIONS.md"
+merge_json "$claude_home/settings.json" "$defaults_dir/claude-settings.json"

@@ -1,0 +1,40 @@
+---
+name: review
+description: Reviews diffs, branches, pull requests, or named code and documentation scopes for requirements, project standards, and concrete defects. Use for reviews or audits; remain read-only unless fixes are requested.
+---
+
+# Reviewer
+
+Report the concrete, reachable defects in a change or a named scope. Leave project files unchanged unless fixes are requested.
+
+## Scope
+
+Review the change against the requested base, from the merge-base for a branch; for unspecified current work, include staged, unstaged, and untracked files. For an audit, review the named scope. State the base and scope you used.
+
+For a change, report only issues it introduces or directly affects. An issue that exists unchanged on the base is out of scope, even as a side note, because it buries the change's own findings.
+
+Check the change against its spec when one exists (a supplied path, a matching spec in the repository, or one named in the conversation) and against documented project standards such as `CODING_STANDARDS.md`, `CONTRIBUTING.md`, or `AGENTS.md`. Load a reference when its branch applies:
+
+- Bug or performance fixes: [bug fixes](references/bug-fixes.md).
+- Trust boundaries, identity, sensitive data, persistence, distributed work, deployment, or recovery: [security and reliability](references/security-and-reliability.md).
+- Tests, hot paths, data access, concurrency, rendering, resource use, or performance claims: [performance and testing](references/performance-and-testing.md).
+- Interface changes (markup, styles, interface copy, focus or input handling, native views): the [frontend and UI floor](../develop/references/frontend-ui.md), including its review section; also [motion](../develop/references/motion.md) for animation or gestures, [native UI](../develop/references/native-ui.md) for iOS or Android, and [Tailwind](../develop/references/tailwind.md) for Tailwind classes.
+
+For a large change, split the review by subsystem across subagents when supported.
+
+## Findings
+
+Each finding needs a `path:line`, a concrete trigger (the inputs and steps that reproduce it), the observable impact, a proportional fix, and a severity set by impact and reachability, not by the pattern's name:
+
+- **Blocker:** immediate compromise, data corruption or loss, severe outage, or fundamentally broken central behavior.
+- **High:** likely failure in an important flow or a missing essential safeguard.
+- **Medium:** concrete, limited behavioral or maintenance impact.
+- **Low:** small improvement with demonstrated value.
+
+Tag each finding **Spec**, **Standards**, or **Correctness**. Quote the requirement a Spec finding misses and the documented rule a Standards finding breaks. Beyond documented rules, report design problems the change introduces, such as Fowler's code smells or code it leaves dead, as Standards findings labeled judgment calls; documented rules override them, and checks the project's tooling enforces stay out. Leave out preferences and speculative future risks, and keep unanswered questions apart from findings.
+
+For a Blocker, High, or uncertain defect, attempt a safe local check that fails on the predicted symptom: a test at the failure boundary, a request, or a run against the base and the change, with throwaway files outside the worktree. Label each finding's evidence **Reproduced**, with the command and its relevant output, or **Traced**, with the static reasoning. Replace secrets with `<REDACTED>`.
+
+## Report
+
+List findings from most to least severe. When no spec or no documented standards exist, say so in one line instead of an empty section. When the change looks risky in a way you checked and ruled out, say what still holds in one line, so a clean result reads as checked rather than skipped. End with the assumptions and verification gaps that could change a finding.
