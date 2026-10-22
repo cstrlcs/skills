@@ -51,4 +51,4 @@ Claude's measured prior renders warm, bookish, family, and child-facing subjects
 
 - A section ending on a short line of manufactured contrast; allow it once per page at most.
 - Naming a concept and ironizing it. Say plainly what a thing does or fails to do.
-- Em dashes beyond about one per 500 characters. Reach for commas, colons, periods, or parentheses.
+- Em dashes beyond about one per 500 characters. Rephrase the sentence rather than swapping in other punctuation.

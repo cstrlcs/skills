@@ -19,7 +19,11 @@ Delegate discoverable facts to subagents instead of asking the user. A pending i
 
 The frontier is every open decision whose prerequisites are settled. Ask the entire frontier in one round. A question that depends on another unanswered question or pending investigation belongs to a later round.
 
-Number each question, explain the choice briefly, and give a recommended answer with its reason. State uncertainty when evidence is insufficient for a recommendation. Use this format, repeating it for every question in the round:
+Number each question, explain the choice briefly, and give a recommended answer with its reason. State uncertainty when evidence is insufficient for a recommendation.
+
+Ask through the runtime's structured question tool (such as `AskUserQuestion`) when it offers one, because the user answers by choosing instead of typing. Put the question's context in its text and each option's tradeoff in its description, because the tool can hide text written beside the call, and list the recommended option first with "(Recommended)" in its label. When the round holds more questions than one call accepts, ask them in consecutive calls. Keep in text only a question whose answer is free-form or does not fit the tool's options.
+
+Without such a tool, use this format, repeating it for every question in the round:
 
 ```text
 ❓ **Q1** - **<question title>**: <question and relevant options>
@@ -41,4 +45,4 @@ After each round, update the design tree and recompute the frontier. Probe contr
 
 The interview is complete when the frontier is empty because every branch within scope has been visited and resolved, with no pending investigation or silently assumed decision. If the user ends early or defers a decision, summarize what remains open without claiming completion.
 
-Summarize the agreed direction and constraints, then obtain confirmation of shared understanding before implementation. A request to proceed based on that summary counts as confirmation; the interview itself authorizes discussion, not changes.
+Summarize the agreed direction and constraints, then obtain confirmation of shared understanding before implementation, through the structured question tool when available. A request to proceed based on that summary counts as confirmation; the interview itself authorizes discussion, not changes.

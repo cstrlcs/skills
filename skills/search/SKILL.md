@@ -1,25 +1,23 @@
 ---
 name: search
-description: Searches the web through parallel subagents for official data and organic, recent first-hand reports, discarding sponsored, AI-generated, dropshipping, and scam sources. Use whenever the user asks to search, pesquisar, or find the best option for something, including products to buy in Brazil.
+description: Searches the web for official data and recent first-hand reports, discarding sponsored, AI-generated, and scam sources. Use whenever the user asks to search, research, or find the best option for something.
 ---
 
 # Search
 
-Answer from sources read in this session, never from memory, because memory lags current specs, prices, and availability.
+Answer from pages opened in this session, never from memory or search snippets, because both lag current specs, prices, and availability.
 
-1. Read [sources.md](sources.md). Done when you know which source tiers and discard signals apply to this topic.
-2. Frame the search: the decision the user faces, their constraints (budget, use case), and whether it is a physical product, which adds the Brazil branch of `sources.md`. Ask only when a missing constraint would change the recommendation; otherwise state the assumption.
-3. Dispatch two to four `general-purpose` subagents in one message, one per angle, using the brief below. Typical angles: official data and specs; organic first-hand reports and recommendations; for a physical product, availability, price, and seller reputation in Brazil. Split a broad topic further by option or sub-question.
-4. Cross-check the returns. Drop any claim that rests on a discarded source, settle conflicts by source tier, and send a follow-up subagent for a gap that would change the recommendation. Done when every spec traces to an official page, every recommended option has at least two independent organic reports, and every physical product has a reputable Brazilian listing with price and check date.
-5. Answer in the user's language: lead with one recommendation and why, then alternatives with their trade-off, then the sources with links and dates, then what you could not verify. Name any completion bar from step 4 that was not met instead of filling it from memory.
+1. Frame the decision: what the user is choosing and their constraints (budget, use case, region). Ask only when a missing constraint would change the recommendation; otherwise state the assumption.
+2. Search in the user's language and in English, opening only pages you expect to cite. A typical search takes three to five queries and four to eight pages.
+3. Stop as soon as the bar is met: every spec traces to an official source, the recommended option has two independent organic reports, and anything to buy has a reputable seller in the user's region with price and check date. Drop claims that rest on a discarded source and settle conflicts by tier.
+4. Answer in the user's language: one recommendation and why, alternatives with their trade-off, sources with links and dates, then what you could not verify, naming any unmet part of the bar instead of filling it from memory.
 
-## Subagent brief
+## Sources
 
-Each brief carries the topic, the user's constraints, the angle, and this text:
+1. **Official**: manufacturer pages, datasheets, manuals, regulators, project documentation. The only source for specs, because listings and articles copy specs with errors.
+2. **Organic**: first-hand reports from people with no stake: forums, community threads, long-term owner reviews. The main source for which option is best and for real-world problems. Weight a report by detail and ownership time; agreement across independent threads outweighs any single post.
+3. **Editorial**: independent outlets with measured testing. Use to corroborate, not to decide.
 
-<example>
-Read `~/.claude/skills/search/sources.md` and apply it to every source. Search with WebSearch and open the pages with WebFetch; take every fact from a page you opened, never from memory or a search snippet. Search in Portuguese and English. Return:
-- Findings: each claim with its URL, source tier, publication or last-update date, and for organic reports whether the author owned or used the item.
-- Discarded: each rejected source with its discard signal, one line each.
-- Gaps: what you looked for and did not find.
-</example>
+Prefer reports from the last 12 months and flag older ones, because products get revised and prices shift.
+
+Discard a source that is sponsored or affiliate-driven without hands-on testing, AI-generated or content-farm text without first-hand detail, dropshipping, a likely scam (price far below market, new domain, no verifiable business), or an interested party (brand-run reviews, competitor attacks). Mention a discarded source only when it would otherwise look credible.

@@ -8,9 +8,9 @@ Run the relevant existing tests before changing code, so you know the command an
 
 ## Layout and naming
 
-Keep tests out of the source tree, in a `tests/` folder at the project root (each package root in a monorepo) that mirrors the source layout: `src/billing/invoice.ts` is tested in `tests/billing/invoice.spec.ts`. End-to-end tests live in `tests/e2e/`. Shared fixtures and helpers live in `tests/support/`.
+Follow the layout and naming the project documents (`AGENTS.md`) or its existing suite uses consistently. Otherwise, keep tests out of the source tree, in a `tests/` folder at the project root (each package root in a monorepo) that mirrors the source layout: `src/billing/invoice.ts` is tested in `tests/billing/invoice.spec.ts`. End-to-end tests live in `tests/e2e/`. Shared fixtures and helpers live in `tests/support/`.
 
-In TypeScript and JavaScript, the suffix names the kind of test, so runners select suites by pattern:
+For that default layout in TypeScript and JavaScript, the suffix names the kind of test, so runners select suites by pattern:
 
 | Suffix | Kind |
 |---|---|
@@ -18,7 +18,7 @@ In TypeScript and JavaScript, the suffix names the kind of test, so runners sele
 | `.e2e.ts` | End-to-end tests |
 | `.bench.ts` | Benchmarks |
 
-Point the runners' include patterns at these paths and suffixes. When a project's tests use another layout, migrate the whole suite to this one, with its runner configuration and imports, and run it green; keep the migration a separate change from the requested work, so each diff reviews on its own.
+Keep runners' include patterns aligned with the project's chosen paths and suffixes. When an existing suite is inconsistent, propose consolidating it as a separate change; do not migrate it unasked.
 
 ## Agree on test seams
 

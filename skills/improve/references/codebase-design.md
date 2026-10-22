@@ -88,10 +88,10 @@ Good interfaces make testing natural:
 
    ```typescript
    // Testable
-   function calculateDiscount(cart): Discount {}
+   function calculateDiscount(cart) {}
 
    // Hard to test
-   function applyDiscount(cart): void {
+   function applyDiscount(cart) {
      cart.total -= discount;
    }
    ```
