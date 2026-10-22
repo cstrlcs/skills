@@ -16,7 +16,7 @@ Portable skills for solo software development with Claude Code.
 | `write` | Writing skills, `CLAUDE.md`, and other documents agents read |
 | `search` | Searching the web for official data and first-hand reports, discarding sponsored and AI-generated sources |
 | `retro` | Turning the session's corrections and repeated mistakes into hooks, rules, or skill edits |
-| `defer` | Resuming the current work at a given time, keeping the Mac awake |
+| `defer` | Resuming the current work at a given time, keeping the machine awake |
 | `obsidian` | Filing text, URLs, files, and audio into an Obsidian vault |
 
 ## Install

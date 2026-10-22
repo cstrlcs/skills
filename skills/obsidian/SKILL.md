@@ -25,7 +25,7 @@ Extract only source-supported sections that help develop the idea, such as conce
 
 ## URLs
 
-For a bare URL, inspect enough of the page to determine its canonical title and purpose. Prefer an existing link catalog and section over creating a new one. Avoid duplicate URLs and duplicate products. If the link is evidence for a larger supplied idea, cite it inside the primary note instead of also filing it independently unless the user asks for both.
+For a bare URL, inspect enough of the page to determine its canonical title and purpose. Prefer an existing link catalog and section over creating a new one. Avoid duplicate URLs and duplicate products: when the product already has an entry, add the new URL to that entry. If the link is evidence for a larger supplied idea, cite it inside the primary note instead of also filing it independently unless the user asks for both.
 
 ## Social Posts
 
