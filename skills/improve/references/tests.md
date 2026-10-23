@@ -19,7 +19,7 @@ Run the scoped suite once and record the command, duration, failures, and skippe
 - **Layout:** an inconsistent layout or naming convention, or one that contradicts the project's instructions. Solution: propose consolidating the suite as a separate change.
 - **Gaps:** critical behavior (money, auth, data loss, recent bug fixes found in `git log`) with no test at a seam.
 
-Give each candidate its evidence: test names with paths, the mutation that stayed green, timings, or the duplicate test, plus the expected change in test count and suite time.
+Give each candidate its evidence: test names with paths, the mutation that stayed green, timings, or the duplicate test, plus the expected change in test count and suite time. Compute any expected value you quote by running the code, not by hand.
 
 ## After the choice
 

@@ -24,7 +24,7 @@ Read the project's domain glossary (`CONTEXT.md` when present) and relevant ADRs
 
 ## 2. Explore
 
-Spawn one subagent per selected area, in parallel. Give each its brief's path, the scope, the domain language, and the relevant ADRs, plus the design vocabulary for `codebase` and `tests`, and ask it to return candidates in the shape of step 3 with the evidence behind each.
+Spawn one subagent per selected area, in parallel, with `model: "sonnet"`, because you verify every candidate against the code yourself. When the scope is a few files you would read anyway to verify, explore it yourself and say so. Give each its brief's path, the scope, the domain language, and the relevant ADRs, plus the design vocabulary for `codebase` and `tests`, and list the brief's required steps in the prompt (for `tests`: the baseline, isolated reruns of failures, and the mutation check), because explorers skip steps that only the brief names. Ask each to return candidates in the shape of step 3 with the evidence behind each, and wait for their results in this turn.
 
 While they work, inspect the callers, dependencies, and tests you need to judge their findings. Verify each returned candidate against the code before presenting it, drop any that do not hold, and merge candidates that two areas found for the same code. Exploration is complete when every area has returned verified candidates or an explicit finding that nothing in the scope is worth changing.
 

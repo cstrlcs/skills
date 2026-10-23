@@ -25,7 +25,7 @@ Confirm the loop repeatedly produces the reported error, wrong output, or slow t
 
 ## 3. Form hypotheses
 
-Generate 3–5 ranked hypotheses before testing any, to avoid anchoring on the first plausible cause. Give each a falsifiable prediction: if X is the cause, changing Y should produce Z. Show the ranked list to the user before testing; proceed without waiting for a reply.
+When the minimized loop already isolates a single cause, state it with the evidence that rules out the alternatives and go to phase 5. Otherwise, generate 3–5 ranked hypotheses before testing any, to avoid anchoring on the first plausible cause. Give each a falsifiable prediction: if X is the cause, changing Y should produce Z. Show the ranked list to the user before testing; proceed without waiting for a reply.
 
 ## 4. Instrument
 

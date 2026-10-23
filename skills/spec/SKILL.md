@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Spec
 
-Synthesize the conversation and your codebase understanding into a spec. Decisions already made in the conversation are settled: record them rather than reopening them, and put what remains undecided under Open Questions instead of asking.
+Synthesize the conversation and your codebase understanding into a spec. Decisions already made in the conversation are settled: record them rather than reopening them, and put what remains undecided under Open Questions instead of asking. Keep the names the user gave to values and concepts. A proposal of yours that the user did not confirm is undecided: it goes under Open Questions only, not also under Implementation Decisions.
 
 ## Process
 

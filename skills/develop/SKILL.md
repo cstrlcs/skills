@@ -9,13 +9,12 @@ Deliver the requested behavior with the smallest coherent change that fits the p
 
 ## Understand
 
-Establish the expected behavior and the affected call path before editing. For bugs, reproduce the failure before fixing it when practical.
+Establish the expected behavior and the affected call path before editing. For a reported bug that is intermittent, a performance regression, or follows a failed fix, read [debugging](references/debugging.md) before your first edit and follow its phases, because a plausible cause read from the code is the hypothesis its loop exists to test. For any other bug, reproduce the failure before fixing it when practical.
 
 Read references when their branch applies:
 
 - Large tasks with independent implementation workstreams: follow [delegation](references/delegation.md) when subagents are available; keep small or tightly coupled tasks with the main agent.
 - Writing or changing tests: read [testing](references/testing.md) first; follow its test-first workflow when the user asks for test-driven development.
-- Unclear cause, failed fix, intermittent bug, or performance regression: follow [debugging](references/debugging.md), establishing its feedback loop before forming hypotheses.
 - Building or changing a user interface (pages, screens, markup, styles, interface copy, focus or input handling): read [frontend and UI](references/frontend-ui.md) before writing it, then the branch files it links.
 - APIs, persistence, migrations, events, distributed workflows, background work, integrations, or runtime changes: [services and data](references/services-and-data.md).
 
@@ -31,6 +30,6 @@ Read references when their branch applies:
 
 ## Verify and deliver
 
-Run the project's relevant checks: formatting, lint, types, tests, and build. Clear each failure by fixing its cause, never by disabling or loosening the check or by reshaping the code so the check cannot see it (`void`, `_` prefixes, casts, `@ts-expect-error`, a helper that only moves branches, deleting the flagged code or test). When a diagnostic exposes a real bug outside the request, leave it standing and report it. Before finishing, confirm every changed line traces to the request or a stated scope expansion. For explicit acceptance criteria, map each one to the verification that shows it met; passing general checks alone does not establish acceptance. Finish when the behavior is verified, or state exactly what remains unverified and why.
+Run the project's relevant checks: formatting, lint, types, tests, and build. Clear each failure by fixing its cause, never by disabling or loosening the check or by reshaping the code so the check cannot see it (`void`, `_` prefixes, casts, `@ts-expect-error`, a helper that only moves branches, deleting the flagged code or test). When a diagnostic exposes a real bug outside the request, leave it standing and report it. When the flagged code is itself the bug (a computed value never used, an unhandled case), fix it while clearing the check and report the behavior change. Before finishing, confirm every changed line traces to the request or a stated scope expansion. For explicit acceptance criteria, map each one to the verification that shows it met; passing general checks alone does not establish acceptance. Finish when the behavior is verified, or state exactly what remains unverified and why.
 
-Report the resulting behavior, the interpretations you chose where the request was ambiguous, any scope expansion and why, the checks you ran, material limitations, and any bug or open work a code comment would have recorded, since the project may ban comments.
+Report the resulting behavior, the routine choices you resolved from repository evidence, any scope expansion and why, the checks you ran, material limitations, and any bug or open work a code comment would have recorded, since the project may ban comments.
