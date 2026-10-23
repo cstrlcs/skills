@@ -126,14 +126,21 @@ for (const { name: folder } of skills) {
     );
   }
 
-  const markdownFiles = [...new Glob("**/*.md").scanSync({ cwd: directory })].filter(
-    (file) => !file.startsWith("references/") || folder !== "docs",
-  );
+  const markdownFiles = [...new Glob("**/*.md").scanSync({ cwd: directory })];
 
   for (const file of markdownFiles) {
     const path = join(directory, file);
+    const text = readFileSync(path, "utf8");
 
-    for (const target of markdownLinks(readFileSync(path, "utf8"))) {
+    for (const [block] of text.matchAll(/```![\s\S]*?```/g)) {
+      if (/~\/\.claude\b/.test(block)) {
+        errors.push(
+          `${at(path)}: shell block hardcodes ~/.claude; use "\${CLAUDE_CONFIG_DIR:-$HOME/.claude}" so it works with CLAUDE_CONFIG_DIR`,
+        );
+      }
+    }
+
+    for (const target of markdownLinks(text)) {
       if (target.startsWith("/") || target.startsWith("~")) {
         continue;
       }

@@ -5,11 +5,11 @@ description: Searches the web for official data and recent first-hand reports, d
 
 # Search
 
-Answer from pages opened in this session, never from memory or search snippets, because both lag current specs, prices, and availability.
+Answer from pages opened in this session, never from memory or search snippets, because both lag current specs, prices, and availability. When a page you need is blocked, drop the claim or mark it unverified.
 
 1. Frame the decision: what the user is choosing and their constraints (budget, use case, region). Ask only when a missing constraint would change the recommendation; otherwise state the assumption.
 2. Search in the user's language and in English, opening only pages you expect to cite. A typical search takes three to five queries and four to eight pages.
-3. Stop as soon as the bar is met: every spec traces to an official source, the recommended option has two independent organic reports, and anything to buy has a reputable seller in the user's region with price and check date. Drop claims that rest on a discarded source and settle conflicts by tier.
+3. Stop as soon as the bar is met: every spec traces to an official source, the recommended option has two independent organic reports, and anything to buy has a reputable seller in the user's region with price and check date. Drop claims that rest on a discarded source and settle conflicts by tier. If part of the bar is still unmet after about five queries and eight pages, stop and report that part as unmet, because further searching rarely finds what the first queries missed.
 4. Answer in the user's language: one recommendation and why, alternatives with their trade-off, sources with links and dates, then what you could not verify, naming any unmet part of the bar instead of filling it from memory.
 
 ## Sources
